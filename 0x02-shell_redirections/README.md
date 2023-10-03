@@ -10,3 +10,4 @@ Task 9 is a bash script that will write the output of the ls -la command, which 
 Task 10 is a bash script that will print the last line of the file ‘iacta’ to the standard output, and append it to the same file
 Task 11 is a bash script that will delete all the files with the .js extension in the current directory and all its subfoldersTask 12 is a bash script that will print the number of directories and sub-directories in the current directory to the standard output
 Task 13 is a bash script that will print the 10 newest files in the current directory to the standard output
+Task 14 is a bash script that will print only the words that appear exactly once in the input, sorted alphabetically
