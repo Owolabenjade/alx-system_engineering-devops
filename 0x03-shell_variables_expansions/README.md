@@ -7,3 +7,4 @@ Task 5 is a scrip that lists all local variables and environment variables, and 
 Task 6 is a script that creates a new local variable.
 Task 7 is a script that creates a new global variable. It uses the export command to achieve this.
 Task 8 is a script that prints the result of the addition of 128 with the value stored in the environment variable TRUEKNOWLEDGE, followed by a new line
+Task 9 is a script that will evaluate the expression to divide the value of the environment variable of POWER by the value of the environment variable of DIVIDE
