@@ -5,3 +5,4 @@ Task 3 is a script that will use the tr command to replace the colon (:) charact
 Task 4 is a script that lists environment variables. It uses the printenv command to achieve this.
 Task 5 is a scrip that lists all local variables and environment variables, and functions. It uses the declare command to achieve this.
 Task 6 is a script that creates a new local variable.
+Task 7 is a script that creates a new global variable. It uses the export command to achieve this.
