@@ -18,3 +18,4 @@ Task 19 is a bassh script that will print the lines that start with a letter, ei
 Task 20 is a bash script that will read the input from the standard input and replace all occurrences of A with Z and c with e, and print the output to the standard output
 Task 21 is a bash script that  will read the input from the standard input and delete all occurrences of c and C
 Task 22 is a bash script that reverses its input and prints it to the standard output. It uses the rev command and the <<< operator to achieve this. For example, if you run ./21-reverse hello, it will print olleh.
+Task 23 is a bash script that displays all users and their home directories, sorted by users, based on the /etc/passwd file
