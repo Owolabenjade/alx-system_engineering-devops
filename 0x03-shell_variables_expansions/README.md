@@ -9,3 +9,4 @@ Task 7 is a script that creates a new global variable. It uses the export comman
 Task 8 is a script that prints the result of the addition of 128 with the value stored in the environment variable TRUEKNOWLEDGE, followed by a new line
 Task 9 is a script that will evaluate the expression to divide the value of the environment variable of POWER by the value of the environment variable of DIVIDE
 Task 10 is a script that demonstrate how to use shell variables and expansions in bash.
+Task 11 is a script that converts a number from base 2 to base 10
