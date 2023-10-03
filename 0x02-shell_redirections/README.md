@@ -15,3 +15,4 @@ Task 15 is a bash script that will print the lines that contain the word “root
 Task 17 is a bash script that will print the lines that contain the word “root” and 3 lines after them in the file /etc/passwd to the standard output.
 Task 18 is a bash script that will print the lines that do not contain the word “bin” in the file /etc/passwd to the standard output
 Task 19 is a bassh script that will print the lines that start with a letter, either uppercase or lowercase, in the file /etc/ssh/sshd_config to the standard output
+Task 20 is a bash script that will read the input from the standard input and replace all occurrences of A with Z and c with e, and print the output to the standard output
