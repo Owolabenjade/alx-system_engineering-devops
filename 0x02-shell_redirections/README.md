@@ -21,3 +21,4 @@ Task 22 is a bash script that reverses its input and prints it to the standard o
 Task 23 is a bash script that displays all users and their home directories, sorted by users, based on the /etc/passwd file
 Task 24 is a bash script that finds and prints all empty files and directories in the current directory and all sub-directories, including hidden ones.
 Task 25 is a bash script that lists all the files with a .gif extension in the current directory and all its sub-directories, including hidden ones. It also removes the .gif suffix from each file name and sorts them case-insensitively.
+Task 26 is a bash script that decodes acrostics that use the first letter of each line. It uses the cut and tr commands to achieve this
