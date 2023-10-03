@@ -4,3 +4,4 @@ Task 2 is a script that will append /action to the end of the existing PATH vari
 Task 3 is a script that will use the tr command to replace the colon (:) characters in the PATH variable with newline (\n) characters, effectively splitting the PATH into separate lines for each directory. The <<< operator is a bash feature that allows you to use a string as the standard input for a command.
 Task 4 is a script that lists environment variables. It uses the printenv command to achieve this.
 Task 5 is a scrip that lists all local variables and environment variables, and functions. It uses the declare command to achieve this.
+Task 6 is a script that creates a new local variable.
