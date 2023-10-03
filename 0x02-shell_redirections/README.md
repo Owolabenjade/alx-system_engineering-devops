@@ -20,3 +20,4 @@ Task 21 is a bash script that  will read the input from the standard input and d
 Task 22 is a bash script that reverses its input and prints it to the standard output. It uses the rev command and the <<< operator to achieve this. For example, if you run ./21-reverse hello, it will print olleh.
 Task 23 is a bash script that displays all users and their home directories, sorted by users, based on the /etc/passwd file
 Task 24 is a bash script that finds and prints all empty files and directories in the current directory and all sub-directories, including hidden ones.
+Task 25 is a bash script that lists all the files with a .gif extension in the current directory and all its sub-directories, including hidden ones. It also removes the .gif suffix from each file name and sorts them case-insensitively.
