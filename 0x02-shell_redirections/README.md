@@ -12,3 +12,4 @@ Task 11 is a bash script that will delete all the files with the .js extension i
 Task 13 is a bash script that will print the 10 newest files in the current directory to the standard output
 Task 14 is a bash script that will print only the words that appear exactly once in the input, sorted alphabetically
 Task 15 is a bash script that will print the lines that contain the word “root” in the file /etc/passwd to the standard outputTask 16 is a bash script that will print the number of lines that contain the word “bin” in the file /etc/passwd to the standard output
+Task 17 is a bash script that will print the lines that contain the word “root” and 3 lines after them in the file /etc/passwd to the standard output.
