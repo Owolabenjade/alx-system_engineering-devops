@@ -4,3 +4,4 @@ Task 3 is a bash script that displays the command to display the content of the 
 Task 4 is a bash script that prints the command to display content of 2 files together on terminal
 Task 5 is a bash script that prints the command to display the last 10 lines of a file
 Task 6 is a bash script that prints the command to display the first 10 lines of a file
+Task 7 is a bash script that prints the command to displays the third line of a file
