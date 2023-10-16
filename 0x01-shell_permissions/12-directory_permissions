@@ -1,2 +1,2 @@
 #!/bin/bash
-(mkdir my_dir; chmod 751 my_dir)
+echo "mkdir my_dir" > temp_script; echo "chmod 751 my_dir" >> temp_script; . temp_script; rm temp_script
