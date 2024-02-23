@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script displays lines containing the word 'bash', useful for finding Bash PIDs
+# shellcheck disable=SC2009
+ps aux | grep bash
