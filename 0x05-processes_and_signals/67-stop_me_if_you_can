@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script sends a SIGTERM to the 7-highlander process
+
+# Use pkill with the -f option to match the full command line of the process
+pkill -f '7-highlander'
