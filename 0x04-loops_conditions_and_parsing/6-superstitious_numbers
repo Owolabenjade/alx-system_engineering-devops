@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This script displays numbers from 1 to 20 with special messages for 4, 9, and 17
+
+number=1
+
+while [ "$number" -le 20 ]; do
+    case $number in
+        4)
+            echo "4 and then bad luck from China"
+            ;;
+        9)
+            echo "9 and then bad luck from Japan"
+            ;;
+        17)
+            echo "17 and then bad luck from Italy"
+            ;;
+        *)
+            echo "$number"
+            ;;
+    esac
+    ((number++))
+done
