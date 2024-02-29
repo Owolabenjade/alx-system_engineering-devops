@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script writes the correct answers for questions about MAC and IP addresses to a file
+
+# Output the answers to a file
+echo "2" > answers.txt # Answer for what is a MAC address
+echo "1" >> answers.txt # Answer for what is an IP address

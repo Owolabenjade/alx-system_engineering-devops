@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# This script outputs the correct answers for the network questions into 1-types_of_network
+# This script writes the correct answers for questions
 
-# Output the answers into 1-types_of_network
-echo "3" > 1-types_of_network # Answer for the first question
-echo "2" >> 1-types_of_network # Answer for the second question
-echo "1" >> 1-types_of_network # Answer for the third question
+# Output the answers to a file
+echo "3" > 0answers.txt # Answer for question 1
+echo "2" >> 0answers.txt # Answer for question 2
+echo "1" >> 0answers.txt # Answer for question 3
