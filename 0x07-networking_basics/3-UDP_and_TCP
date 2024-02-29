@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script writes the correct answers for the TCP and UDP questions into a file
+
+# Output the answers to a file
+echo "1" > 3answers.txt # Answer for the TCP box
+echo "2" >> 3answers.txt # Answer for the UDP box
+echo "1" >> 3answers.txt # Answer for the TCP worker
