@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script sets up a simple server listening on port 98 on localhost and outputs any received text
+
+# Listen on port 98 and output any received text. Requires 'nc'.
+nc -lk -p 98 -s 127.0.0.1
