@@ -2,5 +2,5 @@
 # This script outputs the correct answers for the network questions into 1answers.txt
 
 # Output the answers into 1answers.txt
-echo "2" > 1answers.txt # Answer for the first question
-echo "2" >> 1answers.txt # Answer for the second question
+"2" > 1answers.txt # Answer for the first question
+"2" >> 1answers.txt # Answer for the second question
