@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script displays listening sockets along with the PID and program name
+
+# Use ss command to show listening sockets with PID and program name
+ss -tulnp
