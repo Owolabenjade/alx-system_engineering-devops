@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
-# This script outputs the correct answers for the network questions into current file
-2
-2
+# This script contains answers to questions about the OSI (Open Systems Interconnection) model.
+
+# Answers to the questions
+# 1) What is the OSI model?
+#   b) The OSI model is a conceptual model that characterizes the communication functions of a telecommunication system without regard to their underlying internal structure and technology
+echo "2"
+
+# 2) How is the OSI model organized?
+#   b) From the lowest to the highest level
+echo "2"
