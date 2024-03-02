@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
-# This script writes the correct answers for the TCP and UDP questions into a file
+# This script contains answers to questions about TCP and UDP.
 
-# Output the answers to a file
-echo "1" > 3answers.txt # Answer for the TCP box
-echo "2" >> 3answers.txt # Answer for the UDP box
-echo "1" >> 3answers.txt # Answer for the TCP worker
+# Answers to the questions
+# 1) Which statement is correct for the TCP box:
+#   It is a protocol that is transferring data in a slow way but surely
+echo "1"
+
+# 2) Which statement is correct for the UDP box:
+#   It is a protocol that is transferring data in a fast way and might lose data along in the process
+echo "2"
+
+# 3) Which statement is correct for the TCP worker:
+#   Have you received boxes x, y, z?
+echo "1"
