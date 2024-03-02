@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
-# This script writes the correct answers for questions
+# This script contains answers to questions about types of networks.
 
-# Output the answers to a file
-echo "3" > 0answers.txt # Answer for question 1
-echo "2" >> 0answers.txt # Answer for question 2
-echo "1" >> 0answers.txt # Answer for question 3
+# Answers to the questions
+# 1) What type of network a computer in local is connected to?
+#   c) LAN
+echo "3"
+
+# 2) What type of network could connect an office in one building to another office in a building a few streets away?
+#   b) WAN
+echo "2"
+
+# 3) What network do you use when you browse www.google.com from your smartphone (not connected to the Wifi)?
+#   a) Internet
+echo "1"
