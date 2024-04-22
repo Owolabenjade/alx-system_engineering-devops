@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Configures Nginx to redirect '/redirect_me' to another URL with a 301 Moved Permanently status.
+
+# Nginx configuration to create the redirection
+cat > /etc/nginx/sites-available/default <<EOF
+server {
+    listen 80;
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    location / {
+        root /var/www/html;
+        index index.html index.htm;
+    }
+}
+EOF
+
+# Restart Nginx to apply changes (without using systemctl)
+service nginx reload
+
