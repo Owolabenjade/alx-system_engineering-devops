@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Outputs the domain name
+
+echo "myschool.tech"
+
