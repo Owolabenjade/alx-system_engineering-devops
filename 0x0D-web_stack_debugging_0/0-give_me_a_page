@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# This script sets up Apache to serve a page containing "Hello Holberton"
+
+# Update package list and install Apache
+apt-get update
+apt-get install -y apache2
+
+# Start Apache service
+service apache2 start
+
+# Create the HTML file
+echo "Hello Holberton" > /var/www/html/index.html
+
