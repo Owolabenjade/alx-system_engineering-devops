@@ -65,7 +65,11 @@ if __name__ == "__main__":
         print("Usage: python3 0-gather_data_from_an_API.py <employee_id>")
         sys.exit(1)
 
-    employee_id = int(sys.argv[1])
+    try:
+        employee_id = int(sys.argv[1])
+    except ValueError:
+        print("Employee ID must be an integer.")
+        sys.exit(1)
 
     # Fetch employee data
     employee = fetch_employee_data(employee_id)
