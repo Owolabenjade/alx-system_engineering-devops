@@ -70,7 +70,12 @@ def export_to_csv(employee_id, username, todos):
     with open(filename, mode='w', newline='') as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)
         for todo in todos:
-            writer.writerow([employee_id, username, todo.get('completed'), todo.get('title')])
+            writer.writerow([
+                employee_id,
+                username,
+                todo.get('completed'),
+                todo.get('title')
+            ])
 
 
 if __name__ == "__main__":
