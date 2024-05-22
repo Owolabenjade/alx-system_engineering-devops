@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Python script that, using the JSON PLACEHOLDER API,
 for a given employee ID, returns information about his/her TODO list progress
