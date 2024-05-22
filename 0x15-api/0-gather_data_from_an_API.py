@@ -1,26 +1,28 @@
 #!/usr/bin/python3
-"""Gather data from an API"""
-
+"""
+Python script that, using the JSON PLACEHOLDER API,
+for a given employee ID, returns information about his/her TODO list progress
+"""
 import requests
 import sys
 
 
+def get_data_from_api(uid):
+    """
+    Gets and prints data from JSON PLACEHOLDER API
+    Args:
+        uid: employee id
+    Return:
+        None
+    """
+    base = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(base + "users/" + uid).json()
+    userTodos = requests.get(base + "todos", params={"userId": uid}).json()
+    completed = [_.get("title") for _ in userTodos if _.get("completed")]
+    output = "Employee {} is done with tasks({}/{}):".format(
+        user.get("name"), len(completed), len(userTodos))
+    print("\n\t ".join([output] + completed))
+
+
 if __name__ == "__main__":
-    # Define the URL for the REST API
-    url = "https://jsonplaceholder.typicode.com/"
-
-    # send a GET request to retrieve user info
-    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
-
-    # send a GET request to retrive the TODO list
-    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
-
-    # filter completed TODO list and store titles in a list
-    completed = [t.get("title") for t in todos if t.get("completed") is True]
-
-    # print employee's name, completed tasks & total no of tasks
-    print("Employee {} is done with tasks({}/{}):".format(
-        user.get("name"), len(completed), len(todos)))
-
-    # print the titles of completed tasks with indentation
-    [print("\t {}".format(c)) for c in completed]
+    get_data_from_api(sys.argv[1])
