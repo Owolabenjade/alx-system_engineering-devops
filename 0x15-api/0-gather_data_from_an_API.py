@@ -32,7 +32,7 @@ def get_data_from_api(uid):
     userTodos = todos_response.json()
 
     completed = [todo.get("title")
-            for todo in userTodos if todo.get("completed")]
+        for todo in userTodos if todo.get("completed")]
     output = "Employee {} is done with tasks({}/{}):".format(
         user.get("name"), len(completed), len(userTodos))
 
