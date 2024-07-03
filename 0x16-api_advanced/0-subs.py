@@ -1,36 +1,34 @@
 #!/usr/bin/python3
-"""
-Reddit API query to get the number of subscribers for a given subreddit.
-"""
-
+"""Module to query the Reddit API and return number of subscribers for a subreddit."""
 import requests
 
 
 def number_of_subscribers(subreddit):
     """
-    Queries the Reddit API and returns the number
-    of subscribers for a given subreddit.
-    If the subreddit is invalid, it returns 0.
+    Query the Reddit API and return the number of subscribers for a given subreddit.
+    
+    :param subreddit: string, the name of the subreddit to query
+    :return: int, the number of subscribers (0 if invalid subreddit)
     """
-    if len(subreddit) < 2:
-        return 0
-
+    # Set up the API endpoint
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {'User-Agent': 'my-user-agent'}
-
+    
+    # Set a custom User-Agent to avoid Too Many Requests errors
+    headers = {
+        "User-Agent": "MyBot/1.0 (by /u/YourRedditUsername)"
+    }
+    
     try:
+        # Send GET request to the API
         response = requests.get(url, headers=headers, allow_redirects=False)
+        
+        # Check if the request was successful (status code 200)
         if response.status_code == 200:
             data = response.json()
-            return data['data'].get('subscribers', 0)
+            return data['data']['subscribers']
         else:
+            # If not successful (including redirects), return 0
             return 0
-    except requests.RequestException:
+    except:
+        # If any error occurs during the request, return 0
         return 0
-
-if __name__ == '__main__':
-    import sys
-    if len(sys.argv) < 2:
-        print("Please pass an argument for the subreddit to search.")
-    else:
-        print("{:d}".format(number_of_subscribers(sys.argv[1])))
