@@ -1,9 +1,8 @@
-# This manifest kills any process named 'killmenow' using pkill
+# This code kills any process && works together with the 'killmenow' file already provided using pkill
 
-exec { 'kill-killmenow-process':
-  command     => '/usr/bin/pkill -f killmenow',
-  path        => '/usr/bin:/usr/sbin:/bin',
-  onlyif      => '/usr/bin/pgrep -f killmenow',
-  refreshonly => false,
+exec { 'killmenow':
+  command     => '/usr/bin/pkill killmenow',
+  provider  => 'shell',
+  returns ==> [0, 1],
 }
 
