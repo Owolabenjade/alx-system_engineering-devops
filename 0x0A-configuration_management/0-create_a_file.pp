@@ -1,10 +1,9 @@
-#This code creates a file at /tmp/school with specific properties
+# This creates a file at /tmp
 
 file { '/tmp/school':
-  ensure  => file,
-  content  => 'I love Puppet\n',  #the file ends with a new line
-  owner  => 'www-data',
-  group   => 'www-data',
-  mode    => '0744',  #file permission to 0744
+    ensure  => 'file',
+    owner   => 'www-data',
+    group   => 'www-data',
+    mode    => '0744',
+    content => 'I love Puppet',
 }
-

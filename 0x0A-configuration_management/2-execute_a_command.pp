@@ -1,8 +1,6 @@
-# This code kills any process && works together with the 'killmenow' file already provided using pkill
+# This executes a bash command
 
-exec { 'killmenow':
-  command     => '/usr/bin/pkill killmenow',
-  provider  => 'shell',
-  returns ==> [0, 1],
+exec { 'kill':
+  command => 'pkill -f killmenow',
+  path    => ['/usr/bin', '/usr/sbin']
 }
-
