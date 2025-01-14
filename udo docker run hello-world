@@ -1,0 +1,21 @@
+[0;1;32m●[0m docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Tue 2025-01-14 11:22:51 WAT; 1min 27s ago
+TriggeredBy: [0;1;32m●[0m docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 105522 (dockerd)
+      Tasks: 10
+     Memory: 26.1M
+     CGroup: /system.slice/docker.service
+             └─105522 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Jan 14 11:22:48 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:48.800608270+01:00" level=info msg="Default bridge (docker0) is assigned with an IP address 172.17.0.0/16. Daemon option --bip can be used to set a preferred IP address"
+Jan 14 11:22:49 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:49.571747899+01:00" level=info msg="Loading containers: done."
+Jan 14 11:22:50 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:50.221452823+01:00" level=warning msg="WARNING: No blkio throttle.read_bps_device support"
+Jan 14 11:22:50 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:50.221568623+01:00" level=warning msg="WARNING: No blkio throttle.write_bps_device support"
+Jan 14 11:22:50 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:50.221588723+01:00" level=warning msg="WARNING: No blkio throttle.read_iops_device support"
+Jan 14 11:22:50 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:50.221607323+01:00" level=warning msg="WARNING: No blkio throttle.write_iops_device support"
+Jan 14 11:22:50 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:50.221635223+01:00" level=info msg="Docker daemon" commit=38b84dc containerd-snapshotter=false storage-driver=overlay2 version=27.5.0
+Jan 14 11:22:50 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:50.221972223+01:00" level=info msg="Daemon has completed initialization"
+Jan 14 11:22:51 DESKTOP-DUEBSUN dockerd[105522]: time="2025-01-14T11:22:51.454842369+01:00" level=info msg="API listen on /run/docker.sock"
+Jan 14 11:22:51 DESKTOP-DUEBSUN systemd[1]: Started Docker Application Container Engine.
