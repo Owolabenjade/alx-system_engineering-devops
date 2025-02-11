@@ -10,4 +10,3 @@ pgrep -a nginx
 
 echo "Nginx listening on port 8080:"
 sudo ss -tuln | grep ':8080'
-
