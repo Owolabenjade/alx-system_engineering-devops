@@ -1,41 +1,50 @@
 #!/usr/bin/env bash
-# This script configures Nginx to run as the 'nginx' user and listens on all IPs on port 8080
+# Configure nginx to run as nginx user and listen on port 8080
 
-# Step 1: Ensure the nginx user exists
-if ! id -u nginx > /dev/null 2>&1; then
-	    echo "nginx user does not exist. Creating it now."
-	        sudo useradd -r -s /sbin/nologin nginx
-fi
-
-# Step 2: Update Nginx configuration to run as 'nginx' user
-sudo sed -i 's/user www-data;/user nginx;/g' /etc/nginx/nginx.conf
-
-# Step 3: Change the Nginx listen port to 8080 and ensure it listens on all IP addresses
-sudo sed -i 's/listen 80;/listen 0.0.0.0:8080;/g' /etc/nginx/sites-available/default
-
-# Step 4: Ensure that nginx can bind to port 8080 (check for privileges)
-if ! nc -zv 0 8080; then
-	    echo "Port 8080 is not available. Exiting."
+# Ensure nginx user exists
+# We don't create it as it should already exist in the nginx installation
+if ! id "nginx" &>/dev/null; then
+	    echo "nginx user does not exist"
 	        exit 1
 fi
 
-# Step 5: Restart Nginx to apply the changes
-sudo systemctl restart nginx
+# Kill any existing apache2 processes that might be using port 8080
+pkill apache2 2>/dev/null || true
 
-# Step 6: Verify Nginx is running as 'nginx' user and listening on port 8080
-# Check if Nginx is running as 'nginx' user
-if pgrep -u nginx nginx > /dev/null; then
-	    echo "Nginx is running as the nginx user"
-    else
-	        echo "Nginx is not running as the nginx user"
-		    exit 1
+# Set proper permissions for nginx directories
+chown -R nginx:nginx /var/log/nginx
+chown -R nginx:nginx /var/lib/nginx
+
+# Modify nginx configuration
+# Replace default port 80 with 8080
+sed -i 's/listen [0-9]*;/listen 8080;/g' /etc/nginx/sites-available/default
+sed -i 's/listen \[::\]:[0-9]*;/listen [::]:8080;/g' /etc/nginx/sites-available/default
+
+# Update nginx.conf to run as nginx user
+sed -i 's/#*user [^;]*/user nginx/' /etc/nginx/nginx.conf
+
+# Ensure nginx is listening on port 8080 in the main configuration
+if ! grep -q "listen 8080" /etc/nginx/sites-available/default; then
+	    echo "Error: Port configuration failed"
+	        exit 1
 fi
 
-# Check if Nginx is listening on port 8080
-if nc -z 0 8080; then
-	    echo "Nginx is listening on port 8080"
-    else
-	        echo "Nginx is not listening on port 8080"
-		    exit 1
+# Verify nginx configuration
+nginx -t 2>/dev/null
+
+# Start nginx service
+service nginx restart
+
+# Verify nginx is running as nginx user
+if ! ps auxff | grep -q "nginx: master process" | grep nginx; then
+	    echo "Error: nginx is not running as nginx user"
+	        exit 1
 fi
 
+# Verify nginx is listening on port 8080
+if ! nc -z 0 8080 2>/dev/null; then
+	    echo "Error: nginx is not listening on port 8080"
+	        exit 1
+fi
+
+exit 0
