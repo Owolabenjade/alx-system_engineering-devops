@@ -36,7 +36,7 @@ nginx -t 2>/dev/null
 service nginx restart
 
 # Verify nginx is running as nginx user
-if ! ps auxff | grep -q "nginx: master process" | grep nginx; then
+if ! pgrep -u nginx nginx >/dev/null; then
 	    echo "Error: nginx is not running as nginx user"
 	        exit 1
 fi
