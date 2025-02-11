@@ -10,3 +10,11 @@ sudo sed -i 's/listen\s\+80;/listen 8080;/g' /etc/nginx/sites-available/default
 # Restart the Nginx service to apply changes
 sudo service nginx restart
 
+# Check if Nginx is running as the 'nginx' user
+echo "Checking if Nginx is running as the nginx user..."
+ps auxff | grep ngin[x] | grep -v grep
+
+# Check if Nginx is listening on port 8080
+echo "Checking if Nginx is listening on port 8080..."
+sudo ss -tuln | grep 8080
+
