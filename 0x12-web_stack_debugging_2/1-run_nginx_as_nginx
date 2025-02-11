@@ -23,6 +23,9 @@ fi
 sudo systemctl restart nginx
 
 # Step 6: Verify Nginx is running as 'nginx' user and listening on port 8080
-ps aux | grep nginx
+# Use pgrep instead of ps | grep to avoid SC2009 warning
+pgrep -u nginx nginx
+
+# Verify if Nginx is listening on port 8080
 nc -z 0 8080 && echo "Nginx is listening on port 8080" || echo "Nginx is not listening on port 8080"
 
