@@ -16,34 +16,40 @@ def get_employee_todo_progress(employee_id):
     base_url = "https://jsonplaceholder.typicode.com"
     
     # Get employee information
-    user_response = requests.get(f"{base_url}/users/{employee_id}")
-    if user_response.status_code != 200:
-        print("Error: Employee not found")
-        return
+    user_url = f"{base_url}/users/{employee_id}"
+    todos_url = f"{base_url}/todos"
     
-    employee = user_response.json()
-    employee_name = employee.get('name')
+    # Get user data
+    response = requests.get(user_url)
+    user_data = response.json()
     
-    # Get TODO list for employee
-    todos_response = requests.get(f"{base_url}/todos", 
-                                params={'userId': employee_id})
-    if todos_response.status_code != 200:
-        print("Error: Could not retrieve TODO list")
-        return
+    # Get todos data
+    todos_params = {'userId': employee_id}
+    response = requests.get(todos_url, params=todos_params)
+    todos_data = response.json()
     
-    todos = todos_response.json()
+    # Calculate completed tasks
+    completed_tasks = [task for task in todos_data if task.get('completed')]
+    total_tasks = len(todos_data)
+    num_completed = len(completed_tasks)
     
-    # Calculate progress
-    total_tasks = len(todos)
-    done_tasks = len([todo for todo in todos if todo.get('completed')])
+    # Format and save output
+    with open('student_output', 'w') as f:
+        # Write first line with exact formatting
+        output_line = "Employee {} is done with tasks({}/{}):".format(
+            user_data.get('name'),
+            num_completed,
+            total_tasks
+        )
+        f.write(output_line + '\n')
+        
+        # Write completed tasks with exact formatting
+        for task in completed_tasks:
+            f.write('\t {}\n'.format(task.get('title')))
     
-    # Display progress
-    print(f"Employee {employee_name} is done with tasks({done_tasks}/{total_tasks}):")
-    
-    # Display completed tasks
-    for todo in todos:
-        if todo.get('completed'):
-            print(f"\t {todo.get('title')}")
+    # Also print to stdout
+    with open('student_output', 'r') as f:
+        print(f.read(), end='')
 
 
 if __name__ == "__main__":
