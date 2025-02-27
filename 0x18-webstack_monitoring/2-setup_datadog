@@ -1,0 +1,4 @@
+# Datadog Monitor IDs
+
+Monitor for read requests per second: 165545205
+Monitor for write requests per second: 165545280
