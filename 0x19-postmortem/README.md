@@ -1,46 +1,54 @@
-Outage Postmortem
+# Outage Postmortem
 
-Issue Summary
-Duration of the Outage:
+## Issue Summary
+**Duration of the Outage:**
 - Start Time: 2024-06-10 14:00 UTC
 - End Time: 2024-06-10 15:30 UTC
 
-Impact:
-- The web application was down for 1.5 hours.
-- Users experienced a 500 Internal Server Error when trying to access the main service.
-- Approximately 75% of users were affected, as the service was completely unavailable during the outage.
+**Impact:**
+- The Travel Buddy Match application was completely unavailable for 1.5 hours
+- Users attempting to access the service encountered a blank screen with a "Cannot connect to server" error
+- Approximately 85% of users were affected, as only cached content remained partially accessible
+- New user registrations, trip creation, and all matching functionality were completely non-functional
 
-Root Cause:
-- A misconfigured database connection string after a routine maintenance update caused the web application to fail to connect to the database.
+**Root Cause:**
+- A Firebase Authentication configuration change deployed during a routine update caused the application to lose connection to the authentication service, preventing all authenticated API calls
 
-Timeline
-- 14:00 - Issue detected via automated monitoring alert indicating increased error rates.
-- 14:05 - Alert confirmed by on-call engineer.
-- 14:10 - Initial investigation began, focusing on recent code deployments.
-- 14:20 - Engineers assumed the issue was related to the new feature deployed earlier that day.
-- 14:30 - Misleading debugging path led engineers to roll back the latest deployment, but the issue persisted.
-- 14:45 - Incident escalated to the Database Administration (DBA) team after initial debugging attempts failed.
-- 15:00 - DBA team identified that the database connection string in the configuration file was incorrect.
-- 15:10 - Correct database connection string was applied, and the configuration file was updated.
-- 15:20 - Web application restarted, and normal service was restored.
-- 15:30 - Monitoring confirmed that error rates returned to normal, and all systems were operational.
-Root Cause and Resolution
-Root Cause:
-- The issue was caused by an incorrect database connection string in the configuration file. During a routine maintenance update, the connection string was inadvertently modified, resulting in the web application being unable to establish a connection to the database. This misconfiguration led to the application failing and returning 500 Internal Server Errors.
+## Timeline
+- **14:00** - Multiple users reported login failures through support channels
+- **14:05** - Automated monitoring detected a significant drop in successful API calls
+- **14:10** - On-call engineer acknowledged the alert and began initial investigation
+- **14:15** - Issue confirmed to be affecting production environment only, development environment remained functional
+- **14:20** - Initial investigation focused on recent frontend deployment that occurred at 13:45 UTC
+- **14:30** - Frontend rollback attempted but failed to resolve the authentication issues
+- **14:40** - Investigation shifted to backend Firebase services after logs showed authentication rejection patterns
+- **14:50** - Incident escalated to senior developer and Firebase specialist
+- **15:00** - Root cause identified: a Firebase project configuration change had invalidated the API keys used by the application
+- **15:10** - Emergency fix implemented by restoring previous Firebase configuration settings
+- **15:20** - Services gradually restored as configuration propagated
+- **15:30** - Full service functionality confirmed, monitoring showed normal operation
 
-Resolution:
-- The DBA team identified the incorrect database connection string in the configuration file. The correct connection string was obtained and updated in the configuration file. After applying the correct settings, the web application was restarted, restoring normal functionality.
-Corrective and Preventative Measures
-Improvements and Fixes:
-- Improve configuration management processes to prevent incorrect settings from being applied.
-- Implement automated validation checks for configuration changes before deployment.
-- Enhance monitoring to detect and alert on database connection issues more quickly.
+## Root Cause and Resolution
+**Root Cause:**
+The outage was caused by an unintentional change to the Firebase Authentication configuration during a planned security update. A developer had modified the API access restrictions in the Firebase Console, limiting API requests to specific domains for enhanced security. However, the production domain was incorrectly entered (`travbuddymatch.com` instead of `travelbuddymatch.com`), causing all authentication requests from the actual production domain to be rejected.
 
-Task List:
-Patch Configuration Management System: Review and update the configuration management system to include automated validation checks for critical configuration changes.
-Implement Configuration Validation Scripts: Develop scripts to validate the database connection string and other critical configurations before applying changes.
-Enhance Monitoring: Add specific monitoring for database connection health and alerting mechanisms to detect and notify about connection issues immediately.
-Conduct Training: Provide training sessions for engineers on the importance of configuration management and the use of validation tools.
-Review and Update Documentation: Update the documentation to include procedures for validating configuration changes and handling similar outages in the future.
+**Resolution:**
+The immediate fix involved correcting the domain allowlist in the Firebase Console security settings to include the correct production domain. Additionally, the team updated the API access controls to include both development and staging environments to prevent similar issues in the future.
 
-By implementing these measures, we aim to prevent similar incidents from occurring and improve the overall reliability of our web application.
+## Corrective and Preventative Measures
+**Improvements to be made:**
+1. Implement more robust authentication fallback mechanisms to gracefully handle authentication service failures
+2. Enhance monitoring specifically for authentication service status
+3. Create a formalized process for Firebase configuration changes with proper validation steps
+4. Improve user-facing error messages to provide clearer information during service disruptions
+
+**Specific tasks to address the issue:**
+1. Create a configuration validation script that verifies all Firebase settings before and after any changes
+2. Implement a dual-approval process for all production environment configuration changes
+3. Add automated tests to verify authentication flow functionality after deployments
+4. Update the incident response playbook with specific steps for authentication failure scenarios
+5. Deploy an improved client-side caching mechanism to allow basic app functionality during authentication outages
+6. Add redundant error reporting systems that don't rely on the primary authentication service
+7. Schedule a team training session on Firebase security best practices and configuration management
+
+This incident highlighted the critical dependency on third-party authentication services and the need for better change management processes. The team is committed to implementing these improvements to prevent similar outages in the future and minimize impact on users when technical issues do occur.
